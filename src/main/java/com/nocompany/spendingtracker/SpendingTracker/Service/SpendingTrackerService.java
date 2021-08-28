@@ -26,6 +26,16 @@ public class SpendingTrackerService {
 	public List<Category> getAllCategories() {
 		return categoryRepository.findAll();
 	}
+
+
+	public Category updateCategoryById(Long categoryId, String categoryUpdatedName) {
+		Category category=categoryRepository.findById(categoryId);
+		if(category!=null) {
+			category.setName(categoryUpdatedName);
+			categoryRepository.saveCategory(category);
+		}
+		return category;
+	}
 	
 	
 	

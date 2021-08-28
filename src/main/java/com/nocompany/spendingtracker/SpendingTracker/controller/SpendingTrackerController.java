@@ -33,4 +33,12 @@ public class SpendingTrackerController {
 	public List<Category> getAllCategories() {
 		return stService.getAllCategories();
 	}
+	
+	//Basic example of JPQL
+	@GetMapping("/updateCategoryById")
+	public Category updateCategoryById(@RequestParam(value="id") Long categoryId, @RequestParam(value="updatedName") String categoryUpdatedName) {
+		return stService.updateCategoryById(categoryId,categoryUpdatedName);
+	}
+	
+	
 }

@@ -30,5 +30,11 @@ public class CategoryRepository {
 		return resultList;
 	}
 	
+	public Category findById(Long id){
+		Category category=em.find(Category.class, id);
+		return category;
+	}
 
+
+	
 }
