@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nocompany.spendingtracker.SpendingTracker.Entity.Category;
+import com.nocompany.spendingtracker.SpendingTracker.Entity.Expense;
 import com.nocompany.spendingtracker.SpendingTracker.Service.SpendingTrackerService;
 
 @RestController
@@ -34,11 +35,15 @@ public class SpendingTrackerController {
 		return stService.getAllCategories();
 	}
 	
-	//Update categoryById
+	//Update categoryById - http://localhost:8080/updateCategoryById?id=1002&updatedName=Jaggery
 	@GetMapping("/updateCategoryById")
 	public Category updateCategoryById(@RequestParam(value="id") Long categoryId, @RequestParam(value="updatedName") String categoryUpdatedName) {
 		return stService.updateCategoryById(categoryId,categoryUpdatedName);
 	}
 	
-	
+	//Basic example of JPQL
+		@GetMapping("/getAllExpenses")
+		public List<Expense> getAllExpenses() {
+			return stService.getAllExpenses();
+		}
 }

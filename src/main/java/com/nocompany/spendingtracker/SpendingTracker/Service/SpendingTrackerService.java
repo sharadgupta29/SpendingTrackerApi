@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nocompany.spendingtracker.SpendingTracker.Entity.Category;
+import com.nocompany.spendingtracker.SpendingTracker.Entity.Expense;
 import com.nocompany.spendingtracker.SpendingTracker.Repository.CategoryRepository;
+import com.nocompany.spendingtracker.SpendingTracker.Repository.ExpenseRepository;
 
 @Service
 public class SpendingTrackerService {
@@ -14,6 +16,8 @@ public class SpendingTrackerService {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
+	@Autowired
+	ExpenseRepository expenseRepository;
 	
 	public Category addCategory(String categoryName) {
 		
@@ -35,6 +39,11 @@ public class SpendingTrackerService {
 			categoryRepository.saveCategory(category);
 		}
 		return category;
+	}
+
+
+	public List<Expense> getAllExpenses() {
+		return expenseRepository.findAll();
 	}
 	
 	

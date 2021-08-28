@@ -6,10 +6,13 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+
+@NamedQuery(name = "find_all_expense", query = "select e from Expense e")
 @Entity
 public class Expense {
 

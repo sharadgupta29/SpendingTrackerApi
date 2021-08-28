@@ -18,4 +18,22 @@ public class ExpenseRepository {
 	@PersistenceContext
 	EntityManager em;
 	
+	public Expense saveExpense(Expense expense) {
+		em.persist(expense);
+		return expense;
+	}
+	
+	public List<Expense> findAll(){
+		TypedQuery<Expense> query=em.createNamedQuery("find_all_expense",Expense.class);
+		List<Expense> resultList=query.getResultList();
+		return resultList;
+	}
+	
+	public Expense findById(Long id){
+		Expense expense=em.find(Expense.class, id);
+		return expense;
+	}
+
+
+	
 }
