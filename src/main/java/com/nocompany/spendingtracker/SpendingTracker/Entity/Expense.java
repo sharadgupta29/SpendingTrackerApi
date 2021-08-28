@@ -1,6 +1,7 @@
 package com.nocompany.spendingtracker.SpendingTracker.Entity;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,49 +11,64 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-public class Category {
+public class Expense {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String name;
+	private Double amount;
+	private Date purchaseDate;
 	@CreationTimestamp
 	private LocalDateTime addDateTime;
 	@UpdateTimestamp
 	private LocalDateTime updateDateTime;
 	
 	
-	public Category() {
+	public Expense() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	public Category(String name) {
+
+
+	public Expense(Long id, Double amount, Date purchaseDate, LocalDateTime addDateTime, LocalDateTime updateDateTime) {
 		super();
-		this.name = name;
+		this.amount = amount;
+		this.purchaseDate = purchaseDate;
+		this.addDateTime = addDateTime;
+		this.updateDateTime = updateDateTime;
 	}
 
 
 	public Long getId() {
 		return id;
 	}
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 
-	public String getName() {
-		return name;
+	public Double getAmount() {
+		return amount;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
 
-	
-	
+
+	public Date getPurchaseDate() {
+		return purchaseDate;
+	}
+
+
+	public void setPurchaseDate(Date purchaseDate) {
+		this.purchaseDate = purchaseDate;
+	}
+
+
 	public LocalDateTime getAddDateTime() {
 		return addDateTime;
 	}
@@ -75,9 +91,11 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
+		return "Expense [id=" + id + ", amount=" + amount + ", purchaseDate=" + purchaseDate + ", addDateTime="
+				+ addDateTime + ", updateDateTime=" + updateDateTime + "]";
 	}
 	
 	
 	
+		
 }
