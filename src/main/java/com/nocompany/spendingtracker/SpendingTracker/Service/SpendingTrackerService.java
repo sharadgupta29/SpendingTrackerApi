@@ -59,5 +59,10 @@ public class SpendingTrackerService {
 
 	public List<Category> getCategoryHavingExpense() {
 		return categoryRepository.findCategoryHavingExpense();
+	}
+
+
+	public List<Category> findCategoryWithNameLike(String nameLike) {
+		return categoryRepository.findCategoryWithNameLike(nameLike);
 	}	
 }

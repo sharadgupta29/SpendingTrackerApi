@@ -5,6 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -46,4 +50,57 @@ public class CategoryRepository {
 		return query.getResultList();
 	}
 	
+	public List<Category> findCategoryWithNameLike(String like){
+		
+		//1st  create criteriaQuery object using criteria builder
+		
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Category> cq = cb.createQuery(Category.class);
+		
+		//2nd 
+		Root<Category> categoryRoot= cq.from(Category.class);
+		
+		//3rd
+		Predicate nameLike = cb.like(categoryRoot.get("name"), "%"+like+"%");
+		
+		//4th
+		cq.where(nameLike);
+		
+		//5th step
+		TypedQuery<Category> query=em.createQuery(cq.select(categoryRoot));
+		
+		return query.getResultList();
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,5 @@
 package com.nocompany.spendingtracker.SpendingTracker.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +57,10 @@ public class SpendingTrackerController {
 	@GetMapping("/getCategoryHavingExpense")
 	public List<Category> getCategoryHavingExpense() {
 		return stService.getCategoryHavingExpense();
+	}
+	
+	@GetMapping("/getCategoryWithNameLike")
+	public List<Category> getCategoryWithNameLike(@RequestParam(value = "nameLike") String nameLike) {
+		return stService.findCategoryWithNameLike(nameLike);
 	}
 }
