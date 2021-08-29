@@ -1,5 +1,6 @@
 package com.nocompany.spendingtracker.SpendingTracker.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,20 @@ public class SpendingTrackerController {
 	}
 	
 	//Basic example of JPQL
-		@GetMapping("/getAllExpenses")
-		public List<Expense> getAllExpenses() {
-			return stService.getAllExpenses();
-		}
+	@GetMapping("/getAllExpenses")
+	public List<Expense> getAllExpenses() {
+		return stService.getAllExpenses();
+	}
+	
+	//Need to change request to POST for date setup - 
+	@GetMapping("/addExpenseWithCategory")
+	public Expense addExpenseWithCategory(@RequestParam(value = "categoryName") String categoryName,
+			@RequestParam(value = "amount") Double expenseAmount ) {
+		return stService.addExpenseWithCategory(categoryName,expenseAmount,null);
+	}
+	
+	@GetMapping("/getCategoryHavingExpense")
+	public List<Category> getCategoryHavingExpense() {
+		return stService.getCategoryHavingExpense();
+	}
 }

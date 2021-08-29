@@ -6,11 +6,13 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @NamedQuery(name = "find_all_expense", query = "select e from Expense e")
 @Entity
@@ -26,6 +28,9 @@ public class Expense {
 	@UpdateTimestamp
 	private LocalDateTime updateDateTime;
 	
+	@JsonIgnore
+	@ManyToOne
+	private Category category;
 	
 	public Expense() {
 		super();
@@ -33,12 +38,10 @@ public class Expense {
 	}
 
 
-	public Expense(Long id, Double amount, Date purchaseDate, LocalDateTime addDateTime, LocalDateTime updateDateTime) {
+	public Expense(Double amount, Date purchaseDate) {
 		super();
 		this.amount = amount;
 		this.purchaseDate = purchaseDate;
-		this.addDateTime = addDateTime;
-		this.updateDateTime = updateDateTime;
 	}
 
 
@@ -89,6 +92,17 @@ public class Expense {
 
 	public void setUpdateDateTime(LocalDateTime updateDateTime) {
 		this.updateDateTime = updateDateTime;
+	}
+
+	
+	
+	public Category getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 

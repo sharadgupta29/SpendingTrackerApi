@@ -35,6 +35,15 @@ public class CategoryRepository {
 		return category;
 	}
 
-
+	public Category findByName(String categoryName){
+		TypedQuery<Category> query=em.createQuery("select c from Category c where c.name=:cName",Category.class);
+		query.setParameter("cName", categoryName);
+		return query.getSingleResult();
+	}
+	
+	public List<Category> findCategoryHavingExpense(){
+		TypedQuery<Category> query=em.createQuery("select c from Category c JOIN c.expenses e",Category.class);
+		return query.getResultList();
+	}
 	
 }

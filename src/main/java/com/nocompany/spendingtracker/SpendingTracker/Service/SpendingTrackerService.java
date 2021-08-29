@@ -1,5 +1,6 @@
 package com.nocompany.spendingtracker.SpendingTracker.Service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,18 @@ public class SpendingTrackerService {
 	public List<Expense> getAllExpenses() {
 		return expenseRepository.findAll();
 	}
-	
-	
-	
+
+
+	public Expense addExpenseWithCategory(String categoryName, Double expenseAmount, Date purchaseDate) {
+		
+		Category category=categoryRepository.findByName(categoryName);
+		Expense expense = new Expense(expenseAmount,purchaseDate);
+		expense.setCategory(category);
+		return expenseRepository.saveExpense(expense);
+	}
+
+
+	public List<Category> getCategoryHavingExpense() {
+		return categoryRepository.findCategoryHavingExpense();
+	}	
 }

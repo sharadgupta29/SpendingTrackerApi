@@ -1,10 +1,13 @@
 package com.nocompany.spendingtracker.SpendingTracker.Entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,7 +23,8 @@ public class Category {
 	private LocalDateTime addDateTime;
 	@UpdateTimestamp
 	private LocalDateTime updateDateTime;
-	
+	@OneToMany(mappedBy="category")
+	private List<Expense> expenses = new ArrayList<Expense>();
 	
 	public Category() {
 		super();
@@ -71,6 +75,13 @@ public class Category {
 	public void setUpdateDateTime(LocalDateTime updateDateTime) {
 		this.updateDateTime = updateDateTime;
 	}
+	
+	
+
+	public List<Expense> getExpenses() {
+		return expenses;
+	}
+
 
 
 	@Override
